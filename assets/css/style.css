@@ -1,0 +1,46 @@
+#wrapper {
+  width: 90%;
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  overflow: auto;
+}
+#instruction {
+  width: 70%;
+  max-width: 800px;
+  background-color: #ccc;
+  min-height: 80px;
+  margin: 20px auto;
+  padding: 10px;
+}
+#word {
+  width: 70%;
+  max-width: 800px;
+  background-color: #f2f2f2;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+}
+#guess-count {
+  width: 30%;
+  float: left;
+  min-height: 100px;
+  background-color: orange;
+}
+#wrong {
+  float: left;
+  width: 60%;
+  max-width: 500px;
+  border: 2px solid red;
+  margin: 0 auto;
+  padding: 20px
+}
+.letters {
+  border: 1px solid red;
+  padding: 0 20px;
+  color: black;
+  display: inline;
+  font-size: 3em;
+}
+
