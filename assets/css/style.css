@@ -1,46 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Titillium Web', arial, sans-serif;
+  font-weight: 100;
+  height: 100%;
+  background-color: #1bf4fb;
+}
+h1 {
+}
+h2 {
+  margin: 0;
+}
+#win_lose {
+
+  margin-bottom: 1em;
+}
 #wrapper {
   width: 90%;
   max-width: 800px;
-  margin: 10px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
+  margin: 2em auto;
+  padding: 2em;
+  border: 5px dotted #fff;
   overflow: auto;
 }
 #instruction {
-  width: 70%;
-  max-width: 800px;
-  background-color: #ccc;
-  min-height: 80px;
-  margin: 20px auto;
-  padding: 10px;
+  text-align: center;
+  width: 100%;;
+  color: #881fae;
 }
-#word {
-  width: 70%;
-  max-width: 800px;
-  background-color: #f2f2f2;
+#word_placeholder {
+  width: 100%;
   margin: 20px auto;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 2.5em;
+  white-space: nowrap;
+    border: 2px solid #881fae;
+}
+#lives {
+    width: 30%;
+    float: right;
+    height: 200px!important;
+    background-color: #2fc4f1;
+    text-align: center;
+    padding: 20px;
+}
+#guess_count {
+  font-size: 2.5em;
+  margin: 0;
+}
+#incorrect {
+  float: left;
+  width: 66%;
+  background-color: #fe4abb;
+  margin: 0;
   padding: 20px;
+  min-height: 200px;
   text-align: center;
 }
-#guess-count {
-  width: 30%;
-  float: left;
-  min-height: 100px;
-  background-color: orange;
+#guessed_letters {
+  width: 100%;
+  text-align: left;
+  font-size: 2em;
 }
-#wrong {
-  float: left;
-  width: 60%;
-  max-width: 500px;
-  border: 2px solid red;
-  margin: 0 auto;
-  padding: 20px
+
+
+/* Game Buttons and Overlay */
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /*background-color: rgba(0,0,0,0.9);*/
+  background-color: #881fae;
+  text-align: center;
+  padding-top: 12%;
+  font-size: 2em;
+  color: #fff;
 }
-.letters {
-  border: 1px solid red;
-  padding: 0 20px;
-  color: black;
-  display: inline;
-  font-size: 3em;
+button#play_game, button#play_again {
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    font-size: 1.15em;
+    cursor: pointer;
+    border: 2px solid #fff;
+    background-color: transparent;
+}
+button#play_game:hover, button#play_again:hover {
+  opacity: 0.75;
+}
+button#play_again {
+  display: none;
+}
+.display-none {
+  display: none;
+}
+.display-block {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  #lives, #incorrect {
+    width: 100%;
+    margin: 1em 0;
+  }
+  #word_placeholder {
+    font-size: 2em;
+  }
 }
 
