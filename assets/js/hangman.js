@@ -19,7 +19,7 @@ window.onload = function() {
 	    
 	    //reset guesses and won variables
 	    guessesArray = [];
-	    var won;
+	    won = false;
 	    console.log('guessesArray');
 
 	    //Change button and overlay text to Play again
