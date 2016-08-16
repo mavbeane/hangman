@@ -41,14 +41,14 @@ h2 {
 #lives {
     width: 30%;
     float: right;
-    height: 200px!important;
+    min-height: 180px;
     background-color: #2fc4f1;
     text-align: center;
     padding: 20px;
 }
 #guess_count {
   font-size: 2.5em;
-  margin: 0;
+  margin-top: .5em;
 }
 #incorrect {
   float: left;
@@ -56,7 +56,7 @@ h2 {
   background-color: #fe4abb;
   margin: 0;
   padding: 20px;
-  min-height: 200px;
+  min-height: 180px;
   text-align: center;
 }
 #guessed_letters {

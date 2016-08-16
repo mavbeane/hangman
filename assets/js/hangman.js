@@ -1,31 +1,33 @@
 window.onload = function() {
 
-//Set up global variables'
+	//Set up global variables'
 	var wordSelection = ['FULL HOUSE', 'SEINFELD', 'SAVED BY THE BELL', 'HOME IMPROVEMENT', 'FAMILY MATTERS', 'THE NANNY', 'ROSEANNE', 'FRASIER', 'BLOSSOM', 'PARTY OF FIVE', 'NORTHERN EXPOSURE', 'NYPD BLUE', 'DAWSONS CREEK', 'WINGS', 'COACH', 'DESIGING WOMEN', 'FRESH PRINCE'];
+	//Add music links – as array or create object with wordselection
+	
 	var wins = 0;
-	var loses = 0;
+	var losses = 0;
 	var guessesArray = [];
 	var guessesDiv = document.getElementById('guessed_letters');
 	var gamesCount = 0
 	var won;
 
 	var onGameOver = function() {
-	    // Display Win and Loses
+
+	    // Display Win/Lose text + Play again button
 	    document.getElementById('wins').innerHTML = wins;
-	    document.getElementById('loses').innerHTML = loses;
+	    document.getElementById('losses').innerHTML = losses;
+	    
+	    //reset guesses and won variables
 	    guessesArray = [];
 	    var won;
 	    console.log('guessesArray');
+
+	    //Change button and overlay text to Play again
 	    guessesDiv.innerHTML = guessesArray;
 	    document.getElementById('play_game').innerHTML = 'Play Again';
 	    document.getElementById('overlay').classList.remove('display-none');
 
-	    // Display Win/Lose text + Play again button
-
-	    //document.getElementById('play_again').classList.add('display-block').onclick = startGame;
-	    // Display Win/Lose text + Play again button
-
-	    //if wins or loses == 10 then restart stats
+	    //Will add – 10 wins or losses – restart stats
 
 	  };
 
@@ -50,118 +52,99 @@ window.onload = function() {
 
 	    //Random word is selected
 	    var word = wordSelection[Math.floor(Math.random() * wordSelection.length)];
-	    //var word = wordSelection[gamesCount];
 	    console.log(word);
-	    /*if (index > -1) {
-		    		array.splice(index, 1);
-					console.log(word);
-					onsole.log(word);
-				}*/
-	    // variable + append – Add word to Screen with _ and spaces 
 
-	    //var showWord = [word];
-	    //Show word placeholder
+	    // Need to take out of array so it doesn't repeat
+
+
 	    var wordArray = word.split("");
 	    console.log(wordArray);
 	    var wordDisplayedArray = [];
 	    var wordDiv = document.getElementById('word_placeholder');
 
+	    //Show word as underscores – placeholder
 	    for (var i = 0; i < word.length; i++) {
 
-	      if (wordArray[i] == ' ') {
+			if (wordArray[i] == ' ') {
 
-	        wordDisplayedArray.push(' &nbsp; ');
+				wordDisplayedArray.push(' &nbsp; ');
 
-	      } else {
+			} else {
 
-	        wordDisplayedArray.push('_');
+				wordDisplayedArray.push('_');
 
-	      }
-	      console.log(wordDisplayedArray);
+			}
 
-	    };
+			console.log(wordDisplayedArray);
+
+		};
+
 	    wordDiv.innerHTML = wordDisplayedArray.join(' ');
-
-	    /* for (var i = 0; i < wordDisplayedArray.length; i++) {
-	    	console.log('hello');
-	    	var underscorePlacement = wordDisplayedArray.indexOf('_');
-	    	console.log(underscorePlacement);
-
-	    	if (underscorePlacement < 0) {
-	    		won = true;
-	    	}
-	    	console.log(won);
-	    }; */
 
 	    document.onkeyup = function(event) {
 
-	      if (lives == 0) {
-	        loses++;
-	        document.getElementById('win_lose').innerHTML = 'You lOsT! The wOrd waS ' + word + '!';
-	        onGameOver();
-	        gamesCount++;
-	      }
-	      /*else if () {
-	      		alert('You win')
-	      } */
-	      // User Guesses letter – Make sure letter is chosen on keyup
-	      else if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode >= 97 && event.keyCode <= 122) {
+			if (lives == 0) {
+				losses++;
+				document.getElementById('win_lose').innerHTML = 'You lOsT! The shOw waS ' + word + '!';
+				onGameOver();
+				gamesCount++;
+			}
+
+	    // User Guesses letter – Make sure letter is chosen on keyup
+		else if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode >= 97 && event.keyCode <= 122) {
 
 	        guess = String.fromCharCode(event.keyCode).toUpperCase();
 	        console.log(guess);
 
 	        var letterPlacement = word.indexOf(guess);
-	        console.log(letterPlacement);
+	        
 	        //IF guess letter not found
-
-	        console.log(guessesArray);
-
 	        if (wordDisplayedArray.indexOf(guess) != -1 || guessesArray.indexOf(guess) != -1) {
 
-	          alert('You already guessed that letter!');
+				alert('You already guessed that letter!');
 
 	        } else if (letterPlacement < 0) {
-	          // --remainingGuesses
-	          guessesArray.push(guess);
-	          guessesDiv.innerHTML = guessesArray.join(' ');
-	          wordDiv.innerHTML = wordDisplayedArray.join(' ');
-	          lives--;
-	          livesDiv.innerHTML = lives;
+	          
+				// --remainingGuesses
+				guessesArray.push(guess);
+				guessesDiv.innerHTML = guessesArray.join(' ');
+				wordDiv.innerHTML = wordDisplayedArray.join(' ');
+				lives--;
+				livesDiv.innerHTML = lives;
 
-	        } else if (letterPlacement >= 0) { // find all letter
-	          console.log('this is correct');
-	          wordDisplayedArray[letterPlacement] = guess;
+	        } else if (letterPlacement >= 0) { 
+	        	// find all letter
+				wordDisplayedArray[letterPlacement] = guess;
+				
+				for (var i = letterPlacement; i < word.length; i++) {
+					letterPlacement = word.indexOf(guess, i);
+					wordDisplayedArray[letterPlacement] = guess;
 
-	          for (var i = letterPlacement; i < word.length; i++) {
-	            letterPlacement = word.indexOf(guess, i);
-	            wordDisplayedArray[letterPlacement] = guess;
-	            //console.log(wordDisplayedArray);
-	          };
-	          //	for (var i = letterPlacement; i < word.length; i++) {
-	          //		var underscores = 
-	          //		if letterPlacement = word.indexOf('_', i) {
-
-	          //		}
-	          //	}
+	         	};
 
 	        };
 
 	        wordDiv.innerHTML = wordDisplayedArray.join(' ');
 
 	        for (var i = 0; i < wordDisplayedArray.length; i++) {
-	          var underscorePlacement = wordDisplayedArray.indexOf('_');
-	          if (underscorePlacement < 0) {
-	            won = true;
-	          }
+				var underscorePlacement = wordDisplayedArray.indexOf('_');
+				if (underscorePlacement < 0) {
+					won = true;
+				}
 	        };
 	        if (won == true) {
 
-	          wins++;
-	          document.getElementById('win_lose').innerHTML = 'YOu WoN!';
-	          onGameOver();
-	          gamesCount++;
+				wins++;
+				document.getElementById('win_lose').innerHTML = 'YOu WoN!';
+				onGameOver();
+				gamesCount++;
+
 	        };
+
 	      };
-	    }; //end of on keyup	
+
+	    }; //end of on keyup
+
 	 }; //End document play_game
+
 };
